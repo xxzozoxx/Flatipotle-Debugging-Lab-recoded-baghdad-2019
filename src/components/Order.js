@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-
-class Order extends Component {
+import React from 'react'
+import Side from './Side'
+class Order extends React.Component {
   state = {
     isClicked: false
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ProteinForm from './ProteinForm'
 import FillingForm from './FillingForm'
 import ToppingForm from './ToppingForm'
@@ -11,12 +11,12 @@ const DEFAULT_STATE = {
   sides: []
 }
 
-class Form extends Component {
+class Form extends React.Component {
   state = {
     ...DEFAULT_STATE
   }
 
-  handleSubmit() {
+  handleSubmit= (event) =>{ 
     event.preventDefault()
     document.getElementById("order-form").reset()
     this.props.addOrder(this.state)
@@ -26,7 +26,7 @@ class Form extends Component {
     })
   }
 
-  handleChange() {
+  handleChange = (event) => {
     const itemType = event.target.name
     const item = event.target.value
 
@@ -46,25 +46,25 @@ class Form extends Component {
     return(
       <div className="ui raised container segment">
         <h1 className="ui block header">Order Form</h1>
-        <form className="ui form" id="order-form" onSubmit={ this.handleSubmit }>
+        <form className="ui form" id="order-form" onSubmit={event => this.handleSubmit(event) }>
           <ProteinForm
             protein={ this.state.protein }
-            handleOnChange={ this.handleChange }
+            handleOnChange={ event => this.handleChange(event) }
           />
 
           <FillingForm
             fillings={ this.state.fillings }
-            handleOnChange={ this.handleChange }
+            handleOnChange={event => this.handleChange(event) }
           />
 
           <ToppingForm
             toppings={ this.state.toppings }
-            handleOnChange={ this.handleChange }
+            handleOnChange={event => this.handleChange(event) }
           />
 
           <SideForm
             sides={ this.state.sides }
-            handleOnChange={ this.handleChange }
+            handleOnChange={event => this.handleChange(event) }
           />
 
           <br />
